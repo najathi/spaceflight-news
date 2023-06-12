@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AiOutlineHome } from 'react-icons/ai';
 
 type PathType = {
     title: string;
@@ -13,7 +14,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ paths }) => {
     return (
         <div className="text-sm breadcrumbs mb-5">
             <ul>
-                <li><Link href="/"><a>Home</a></Link></li>
+                <li><Link href="/"><a><AiOutlineHome /> &nbsp;Home</a></Link></li>
                 {paths &&
                     paths.map((path: PathType, idx: number) => (
                         <li key={idx}><Link href={path.route}><a>{path.title}</a></Link></li>

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-pointer:hover {
+    text-decoration: underline;
+}

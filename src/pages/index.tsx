@@ -1,12 +1,14 @@
 import { NextPage } from "next";
 import axios from "axios";
 import { useState } from 'react';
+import moment from "moment";
+import { useRouter } from "next/router";
 
 import Hero from "../components/Hero";
 import Meta from "../components/Meta";
 import CardItem from '../components/CardItem';
 import Breadcrumbs from "../components/Breadcrumbs";
-import { useRouter } from "next/router";
+import { IconLeftOpenBig, IconRightOpenBig } from "../components/Icons/Arrows";
 
 export async function getServerSideProps({ query }: any) {
     const page = query.page || 1;
@@ -30,13 +32,14 @@ export async function getServerSideProps({ query }: any) {
     };
 }
 
-type Article = {
+export type Article = {
     id: number;
     title: string;
     url: string;
     image_url: string;
+    news_site: string;
     summary: string;
-    published_at: Date;
+    published_at: string;
     updated_at: Date;
     featured: boolean;
 }
@@ -70,7 +73,6 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                 id="articleList"
                 className="container py-12 mx-auto"
             >
-
                 <div className="flex justify-between items-center my-6">
                     <Breadcrumbs />
                     <input
@@ -91,18 +93,32 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                                 title={article.title}
                                 image={article.image_url}
                                 summary={article.summary}
+                                news_site={article.news_site}
+                                published_at={moment(article.published_at).format("MMMM D, YYYY")}
                                 link={`/articles/${article.id}`}
                             />
                         ))}
                     </div>
                 }
 
-                <div className="join my-6 mx-auto">
-                    {page > 1 && <a className="btn btn-outline join-item mr-3" href={`/?page=${page - 1}#articleList`}>Previous</a>}
-                    <a className="btn btn-outline btn-primary join-item" href={`/?page=${page + 1}#articleList`}>Next</a>
+                <div className="flex justify-center items-center my-6">
+                    <div className="join flex items-center">
+                        {page > 1 &&
+                            <a
+                                className="btn btn-outline join-item mr-3 flex items-center text-sm"
+                                href={`/?page=${page - 1}#articleList`}>
+                                <IconLeftOpenBig /> &nbsp;Previous
+                            </a>
+                        }
+                        <a
+                            className="btn btn-outline btn-primary join-item flex items-center text-sm"
+                            href={`/?page=${page + 1}#articleList`}>
+                            <span className="loading loading-spinner"></span>
+                            Next &nbsp;<IconRightOpenBig />
+                        </a>
+                    </div>
                 </div>
             </div>
-
         </>
     )
 };
