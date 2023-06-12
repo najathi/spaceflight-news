@@ -7,12 +7,14 @@ import { RootState } from '../../store/types';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import CardItem from '../../components/CardItem';
 import { removeAll } from '../../store/slice/favoritesSlice';
+import { useRouter } from 'next/router';
 
 interface FavoritesPageProps {
 
 }
 
 const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
+    const router = useRouter();
     const dispatch = useDispatch();
     const favorites = useSelector((state: RootState) => state.favorites);
 
@@ -55,7 +57,10 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
                         </div>
                         <button
                             className="btn text-2xl my-8"
-                            onClick={() => dispatch(removeAll())}
+                            onClick={() => {
+                                dispatch(removeAll());
+                                router.push('/');
+                            }}
                         >
                             <BsFillTrashFill />
                             &nbsp;Remove All
