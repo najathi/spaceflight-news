@@ -30,8 +30,6 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
         setSearchedArticle(null);
     };
 
-    console.log(searchedArticle)
-
     return (
         <>
             <Meta />
