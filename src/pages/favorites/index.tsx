@@ -8,6 +8,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import CardItem from '../../components/CardItem';
 import { removeAll } from '../../store/slice/favoritesSlice';
 import { useRouter } from 'next/router';
+import { Article } from '..';
 
 interface FavoritesPageProps {
 
@@ -18,13 +19,18 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
     const dispatch = useDispatch();
     const favorites = useSelector((state: RootState) => state.favorites);
 
+    const [searchedArticle, setSearchedArticle] = useState<Article[] | null>(favorites);
     const [search, setSearch] = useState('');
 
     const handleSearch = (e: any) => {
         if (e.key === 'Enter') {
-            //
+            const results = favorites.filter((item: Article) => item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+            return setSearchedArticle(results);
         }
+        setSearchedArticle(null);
     };
+
+    console.log(searchedArticle)
 
     return (
         <>
@@ -48,23 +54,29 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
 
                 {(favorites && favorites.length > 0) ?
                     <>
-                        <div className="grid grid-cols-3 gap-6">
-                            {favorites.map((article) => (
-                                <CardItem
-                                    key={article.id}
-                                    article={article} />
-                            ))}
-                        </div>
-                        <button
-                            className="btn text-2xl my-8"
-                            onClick={() => {
-                                dispatch(removeAll());
-                                router.push('/');
-                            }}
-                        >
-                            <BsFillTrashFill />
-                            &nbsp;Remove All
-                        </button>
+                        {searchedArticle &&
+                            <>
+                                <div className="grid grid-cols-3 gap-6">
+                                    {searchedArticle.map((article) => (
+                                        <CardItem
+                                            key={article.id}
+                                            article={article} />
+                                    ))}
+                                </div>
+                                {searchedArticle.length > 0 &&
+                                    <button
+                                        className="btn text-2xl my-8"
+                                        onClick={() => {
+                                            dispatch(removeAll());
+                                            router.push('/');
+                                        }}
+                                    >
+                                        <BsFillTrashFill />
+                                        &nbsp;Remove All
+                                    </button>
+                                }
+                            </>
+                        }
                     </>
                     :
                     <div className="flex justify-normal alert alert-warning">
