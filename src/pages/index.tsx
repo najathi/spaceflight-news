@@ -9,6 +9,7 @@ import Meta from "../components/Meta";
 import CardItem from '../components/CardItem';
 import Breadcrumbs from "../components/Breadcrumbs";
 import { IconLeftOpenBig, IconRightOpenBig } from "../components/Icons/Arrows";
+import Loading from "../components/Loading";
 
 export async function getServerSideProps({ query }: any) {
     const page = query.page || 1;
@@ -102,21 +103,25 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                 }
 
                 <div className="flex justify-center items-center my-6">
-                    <div className="join flex items-center">
-                        {page > 1 &&
+                    {!router.isFallback ?
+                        <div className="join flex items-center">
+                            {page > 1 &&
+                                <a
+                                    className="btn btn-outline join-item mr-3 flex items-center text-sm"
+                                    href={`/?page=${page - 1}#articleList`}>
+                                    <IconLeftOpenBig /> &nbsp;Previous
+                                </a>
+                            }
                             <a
-                                className="btn btn-outline join-item mr-3 flex items-center text-sm"
-                                href={`/?page=${page - 1}#articleList`}>
-                                <IconLeftOpenBig /> &nbsp;Previous
+                                className="btn btn-outline btn-primary join-item flex items-center text-sm"
+                                href={`/?page=${page + 1}#articleList`}>
+                                <span className="loading loading-spinner"></span>
+                                Next &nbsp;<IconRightOpenBig />
                             </a>
-                        }
-                        <a
-                            className="btn btn-outline btn-primary join-item flex items-center text-sm"
-                            href={`/?page=${page + 1}#articleList`}>
-                            <span className="loading loading-spinner"></span>
-                            Next &nbsp;<IconRightOpenBig />
-                        </a>
-                    </div>
+                        </div>
+                        :
+                        <Loading />
+                    }
                 </div>
             </div>
         </>

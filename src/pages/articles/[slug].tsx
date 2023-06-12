@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import { Article } from '..';
 import ArticleItem from '../../components/Article';
+import Loading from '../../components/Loading';
 
 export async function getServerSideProps({ params }: any) {
     const { slug } = params;
@@ -27,7 +28,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ article }) => {
     const router = useRouter();
 
     if (router.isFallback) {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     return (
