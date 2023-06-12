@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AiOutlineHome } from 'react-icons/ai';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
 
 interface FooterProps {
     [key: string]: any;
@@ -10,7 +12,8 @@ const Footer: React.FC<FooterProps> = () => {
             <footer className="footer p-10 bg-base-200 text-base-content">
                 <div>
                     <span className="footer-title">Services</span>
-                    <Link href="/"><a className="link link-hover">Home</a></Link>
+                    <Link href="/"><a className="link link-hover flex items-center"><AiOutlineHome /> &nbsp;Home</a></Link>
+                    <Link href="/favorites"><a className="link link-hover flex items-center"><MdOutlineFavoriteBorder /> &nbsp;Favorites</a></Link>
                 </div>
             </footer>
             <footer className="footer px-10 py-4 border-t bg-base-200 text-base-content border-base-300">

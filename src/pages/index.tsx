@@ -46,7 +46,7 @@ export type Article = {
 }
 
 interface HomePageProps {
-    articles: [Article];
+    articles: Article[];
     page: number;
     search: string;
 }
@@ -91,13 +91,7 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                         {articles.map((article) => (
                             <CardItem
                                 key={article.id}
-                                title={article.title}
-                                image={article.image_url}
-                                summary={article.summary}
-                                news_site={article.news_site}
-                                published_at={moment(article.published_at).format("MMMM D, YYYY")}
-                                link={`/articles/${article.id}`}
-                            />
+                                article={article} />
                         ))}
                     </div>
                 }

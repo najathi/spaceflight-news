@@ -48,14 +48,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ article }) => {
                 }
 
                 {article &&
-                    <ArticleItem
-                        title={article.title}
-                        published_at={moment(article.published_at).format("MMMM D, YYYY")}
-                        news_site={article.news_site}
-                        summary={article.summary}
-                        image={article.image_url}
-                        url={article.url}
-                    />
+                    <ArticleItem article={article} />
                 }
             </div>
         </>

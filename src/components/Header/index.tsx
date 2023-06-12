@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { AiOutlineHome } from 'react-icons/ai';
+import { MdOutlineFavoriteBorder } from 'react-icons/md';
 
 interface HeaderProps {
     [key: string]: any;
@@ -16,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ }) => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link href="/"><a><AiOutlineHome /> &nbsp;Home</a></Link></li>
+                        <li><Link href="/favorites"><a><MdOutlineFavoriteBorder /> &nbsp;Favorites</a></Link></li>
                     </ul>
                 </div>
                 <Link href="/"><a className="btn btn-ghost text-xl">Spaceflight News</a></Link>
@@ -23,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({ }) => {
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link href="/"><a><AiOutlineHome /> &nbsp;Home</a></Link></li>
+                    <li><Link href="/favorites"><a><MdOutlineFavoriteBorder /> &nbsp;Favorites</a></Link></li>
                 </ul>
             </div>
         </div>
