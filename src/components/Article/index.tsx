@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
 import { BiTimeFive } from 'react-icons/bi';
 import { GoLinkExternal } from 'react-icons/go';
 import { MdOutlineFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 
 import { Article } from '../../pages';
-import moment from 'moment';
+import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
+import { RootState } from '../../store/types';
 
 interface ArticleProps {
     article: Article
@@ -12,10 +14,11 @@ interface ArticleProps {
 }
 
 const Article: React.FC<ArticleProps> = ({ article }) => {
-    const [active, setActive] = useState(false);
+    const dispatch = useDispatch();
+    const favorites = useSelector((state: RootState) => state.favorites);
 
-    const toggleActiveHeart = () => {
-        setActive(prevActive => !prevActive);
+    function checkIfElementExist() {
+        return favorites.some(item => item.id === article.id);
     }
 
     return (
@@ -23,14 +26,14 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
             <div className="mb-4">
                 <div className="flex justify-between">
                     <h2 className="text-2xl font-bold mb-2 w-11/12">{article.title}</h2>
-                    {!active ?
+                    {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
                             className="ml-4 text-2xl cursor-pointer w-1/12"
-                            onClick={toggleActiveHeart}
+                            onClick={() => dispatch(addFavorite(article))}
                         /> :
                         <MdFavorite
                             className="ml-4 text-2xl text-error cursor-pointer w-1/12"
-                            onClick={toggleActiveHeart}
+                            onClick={() => dispatch(removeFavorite(article.id))}
                         />
                     }
                 </div>

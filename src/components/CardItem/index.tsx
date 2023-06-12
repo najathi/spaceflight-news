@@ -2,11 +2,10 @@ import Link from "next/link";
 import { BiTimeFive } from 'react-icons/bi';
 import { IconRead } from "../Icons/Read";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../../store/types";
-import { addFavorite } from "../../store/slice/favoritesSlice";
+import { addFavorite, removeFavorite } from "../../store/slice/favoritesSlice";
 import { Article } from "../../pages";
 import moment from "moment";
 
@@ -16,14 +15,12 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ article }) => {
-    const [active, setActive] = useState(false);
-
-    const toggleActiveHeart = () => {
-        setActive(prevActive => !prevActive);
-    }
-
     const dispatch = useDispatch();
-    const state = useSelector((state: RootState) => state.favorites);
+    const favorites = useSelector((state: RootState) => state.favorites);
+
+    function checkIfElementExist() {
+        return favorites.some(item => item.id === article.id);
+    }
 
     return (
         <div className="card glass">
@@ -31,14 +28,14 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
             <div className="card-body">
                 <div className="flex justify-between">
                     <h2 className="card-title w-11/12">{article.title}</h2>
-                    {!active ?
+                    {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
                             className="ml-4 text-2xl cursor-pointer w-1/12"
                             onClick={() => dispatch(addFavorite(article))}
                         /> :
                         <MdFavorite
                             className="ml-4 text-2xl text-error cursor-pointer w-1/12"
-                            onClick={toggleActiveHeart}
+                            onClick={() => dispatch(removeFavorite(article.id))}
                         />
                     }
                 </div>

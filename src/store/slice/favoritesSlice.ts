@@ -10,8 +10,15 @@ const favoritesReducer = createSlice({
     addFavorite: (state, action: PayloadAction<Article>) => {
       state.push(action.payload);
     },
-    removeFavorite: (state, action: PayloadAction<number>) => state.filter((item) => item.id !== action.payload),
-    removeAll: () => initialState,
+    removeFavorite: (state, action: PayloadAction<number>) => {
+      const index = state.findIndex((item) => item.id === action.payload);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
+    },
+    removeAll: (state) => {
+      state.splice(0, state.length)
+    },
   },
 });
 
