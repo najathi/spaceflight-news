@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import axios from "axios";
 import { useState } from 'react';
-import moment from "moment";
 import { useRouter } from "next/router";
 
 import Hero from "../components/Hero";
@@ -13,6 +12,9 @@ import Loading from "../components/Loading";
 import Container from "../components/Container";
 import Wrapper from "../components/Container/Wrapper";
 import Grid from "../components/Container/Grid";
+import Link from "../components/FormElements/Link";
+import InputField from "../components/FormElements/InputField";
+import Box from "../components/Container/Box";
 
 export async function getServerSideProps({ query }: any) {
     const page = query.page || 1;
@@ -74,17 +76,17 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                 link="#articleList"
             />
             <Container id="articleList">
-                <div className="flex justify-between items-center my-6">
+                <Wrapper className="justify-between">
                     <Breadcrumbs />
-                    <input
+                    <InputField
                         type="text"
-                        placeholder="Search..."
+                        label="Search..."
                         value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e: any) => setSearch(e.target.value)}
                         onKeyPress={handleSearch}
-                        className="input input-bordered input-info w-full max-w-[50%] md:max-w-xs"
+                        className="input-info w-full max-w-[50%] md:max-w-xs"
                     />
-                </div>
+                </Wrapper>
 
                 {articles &&
                     <Grid>
@@ -98,21 +100,23 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
 
                 <Wrapper className="justify-center">
                     {!router.isFallback ?
-                        <Wrapper className="join my-0">
+                        <Box className="join my-0">
                             {page > 1 &&
-                                <a
-                                    className="btn btn-outline join-item mr-3 flex items-center text-sm"
-                                    href={`/?page=${page - 1}#articleList`}>
-                                    <IconLeftOpenBig /> &nbsp;Previous
-                                </a>
+                                <Link
+                                    className="join-item mr-3"
+                                    href={`/?page=${page - 1}#articleList`}
+                                    title="&nbsp; Previous"
+                                    icon={<IconLeftOpenBig />}
+                                    alignContent="right"
+                                />
                             }
-                            <a
-                                className="btn btn-outline btn-primary join-item flex items-center text-sm"
-                                href={`/?page=${page + 1}#articleList`}>
-                                <span className="loading loading-spinner"></span>
-                                Next &nbsp;<IconRightOpenBig />
-                            </a>
-                        </Wrapper>
+                            <Link
+                                className="btn-primary join-item"
+                                href={`/?page=${page + 1}#articleList`}
+                                title="Next &nbsp;"
+                                icon={<IconRightOpenBig />}
+                            />
+                        </Box>
                         :
                         <Loading />
                     }

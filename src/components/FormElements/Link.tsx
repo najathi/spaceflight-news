@@ -2,13 +2,21 @@ import React, { ReactNode } from 'react'
 
 interface LinkProps {
     className?: string;
-    children: ReactNode;
+    title: string;
+    icon?: any;
+    href?: string;
+    alignContent?: 'right' | 'left';
     [key: string]: any;
 }
 
-const Link: React.FC<LinkProps> = ({ }) => {
+const Link: React.FC<LinkProps> = ({ className, icon, title, href, alignContent = "left" }) => {
     return (
-        <div>Link Page</div>
+        <a
+            className={`btn btn-outline text-sm ${!!icon && "flex items-center"} ${className}`}
+            href={href}
+        >
+            {alignContent === 'right' ? <>{!!icon && icon} {title}</> : <>{title} {!!icon && icon}</>}
+        </a>
     );
 }
 

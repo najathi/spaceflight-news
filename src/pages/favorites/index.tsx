@@ -12,6 +12,9 @@ import { Article } from '..';
 import Container from '../../components/Container';
 import Alert from '../../components/Alert';
 import Grid from '../../components/Container/Grid';
+import Wrapper from '../../components/Container/Wrapper';
+import Button from '../../components/FormElements/Button';
+import InputField from '../../components/FormElements/InputField';
 
 interface FavoritesPageProps {
 
@@ -37,21 +40,21 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
         <>
             <Meta />
             <Container>
-                <div className="flex justify-between items-center my-6">
+                <Wrapper className="justify-between">
                     <Breadcrumbs
                         paths={[
                             { title: 'Favorites', route: '/favorites' },
                         ]}
                     />
-                    <input
+                    <InputField
                         type="text"
-                        placeholder="Search..."
+                        label="Search..."
                         value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e: any) => setSearch(e.target.value)}
                         onKeyPress={handleSearch}
-                        className="input input-bordered input-info w-full max-w-[50%] md:max-w-xs"
+                        className="input-info w-full max-w-[50%] md:max-w-xs"
                     />
-                </div>
+                </Wrapper>
 
                 {(searchedArticle && searchedArticle.length > 0) ?
                     <>
@@ -62,16 +65,16 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
                                     article={article} />
                             ))}
                         </Grid>
-                        <button
-                            className="btn text-2xl my-8"
+                        <Button
+                            className="text-2xl my-8"
                             onClick={() => {
                                 dispatch(removeAll());
                                 router.push('/');
                             }}
-                        >
-                            <BsFillTrashFill />
-                            &nbsp;Remove All
-                        </button>
+                            icon={<BsFillTrashFill />}
+                            title="&nbsp; Remove All"
+                            alignContent='right'
+                        />
                     </>
                     :
                     <Alert

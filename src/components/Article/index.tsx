@@ -7,6 +7,8 @@ import moment from 'moment';
 import { Article } from '../../pages';
 import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
 import { RootState } from '../../store/types';
+import Wrapper from '../Container/Wrapper';
+import Box from '../Container/Box';
 
 interface ArticleProps {
     article: Article
@@ -24,7 +26,7 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
     return (
         <div className="bg-white overflow-hidden sm:rounded-lg">
             <div className="mb-4">
-                <div className="flex justify-between">
+                <Box className="justify-between items-start">
                     <h2 className="text-2xl font-bold mb-2 w-11/12">{article.title}</h2>
                     {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
@@ -36,12 +38,12 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
                             onClick={() => dispatch(removeFavorite(article.id))}
                         />
                     }
-                </div>
-                <div className="flex items-center text-sm text-gray-500 my-1">
+                </Box>
+                <Box className="text-sm text-gray-500 my-1">
                     <span className='badge'>{article.news_site}</span>
                     <span className="mx-1">&middot;</span>
-                    <div className="flex items-center"><BiTimeFive />&nbsp; {moment(article.published_at).format("MMMM D, YYYY")}</div>
-                </div>
+                    <Box><BiTimeFive />&nbsp; {moment(article.published_at).format("MMMM D, YYYY")}</Box>
+                </Box>
             </div>
             <img src={article.image_url} alt={article.title} className="w-full mb-4 rounded" />
             <p className="text-gray-700 mb-4">{article.summary}</p>

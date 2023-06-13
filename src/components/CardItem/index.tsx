@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { BiTimeFive } from 'react-icons/bi';
-import { IconRead } from "../Icons/Read";
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 
+import Box from "../Container/Box";
 import { RootState } from "../../store/types";
+import { IconRead } from "../Icons/Read";
 import { addFavorite, removeFavorite } from "../../store/slice/favoritesSlice";
 import { Article } from "../../pages";
-import moment from "moment";
 
 interface CartItemProps {
     article: Article;
@@ -26,7 +27,7 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
         <div className="card glass">
             <figure><img src={article.image_url} alt="car!" /></figure>
             <div className="card-body">
-                <div className="flex justify-between">
+                <Box className="justify-between items-start">
                     <h2 className="card-title w-11/12">{article.title}</h2>
                     {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
@@ -38,11 +39,11 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
                             onClick={() => dispatch(removeFavorite(article.id))}
                         />
                     }
-                </div>
-                <div className="flex justify-between items-center my-1">
-                    <div className="flex items-center text-sm"><BiTimeFive />&nbsp; {moment(article.published_at).format("MMMM D, YYYY")}</div>
+                </Box>
+                <Box className="justify-between my-1">
+                    <Box className="text-sm"><BiTimeFive />&nbsp; {moment(article.published_at).format("MMMM D, YYYY")}</Box>
                     <div className="badge badge-outline text-sm">{article.news_site}</div>
-                </div>
+                </Box>
                 <p className="pb-5">{article.summary}</p>
                 <div className="card-actions justify-end">
                     <Link href={`/articles/${article.id}`} className="btn btn-outline cursor-pointer">
