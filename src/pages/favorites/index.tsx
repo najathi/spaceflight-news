@@ -50,31 +50,25 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
                     />
                 </div>
 
-                {(favorites && favorites.length > 0) ?
+                {(searchedArticle && searchedArticle.length > 0) ?
                     <>
-                        {searchedArticle &&
-                            <>
-                                <div className="grid grid-cols-3 gap-6">
-                                    {searchedArticle.map((article) => (
-                                        <CardItem
-                                            key={article.id}
-                                            article={article} />
-                                    ))}
-                                </div>
-                                {searchedArticle.length > 0 &&
-                                    <button
-                                        className="btn text-2xl my-8"
-                                        onClick={() => {
-                                            dispatch(removeAll());
-                                            router.push('/');
-                                        }}
-                                    >
-                                        <BsFillTrashFill />
-                                        &nbsp;Remove All
-                                    </button>
-                                }
-                            </>
-                        }
+                        <div className="grid grid-cols-3 gap-6">
+                            {searchedArticle.map((article) => (
+                                <CardItem
+                                    key={article.id}
+                                    article={article} />
+                            ))}
+                        </div>
+                        <button
+                            className="btn text-2xl my-8"
+                            onClick={() => {
+                                dispatch(removeAll());
+                                router.push('/');
+                            }}
+                        >
+                            <BsFillTrashFill />
+                            &nbsp;Remove All
+                        </button>
                     </>
                     :
                     <div className="flex justify-normal alert alert-warning">
