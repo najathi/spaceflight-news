@@ -9,6 +9,7 @@ import { RootState } from "../../store/types";
 import { IconRead } from "../Icons/Read";
 import { addFavorite, removeFavorite } from "../../store/slice/favoritesSlice";
 import { Article } from "../../pages";
+import ImageCmp from "../ImageCmp";
 
 interface CartItemProps {
     article: Article;
@@ -25,7 +26,12 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
 
     return (
         <div className="card glass">
-            <figure><img src={article.image_url} alt="car!" /></figure>
+            <figure>
+                <ImageCmp
+                    image={article.image_url}
+                    title={article.title}
+                />
+            </figure>
             <div className="card-body">
                 <Box className="justify-between items-start">
                     <h2 className="card-title w-11/12">{article.title}</h2>
