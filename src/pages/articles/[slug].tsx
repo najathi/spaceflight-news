@@ -44,9 +44,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ article }) => {
                     />
                 }
 
-                {article &&
-                    <ArticleItem article={article} />
-                }
+                {article && <ArticleItem article={article} />}
             </Container>
         </>
     );

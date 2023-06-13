@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { Article } from '..';
 import Container from '../../components/Container';
 import Alert from '../../components/Alert';
+import Grid from '../../components/Container/Grid';
 
 interface FavoritesPageProps {
 
@@ -54,13 +55,13 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
 
                 {(searchedArticle && searchedArticle.length > 0) ?
                     <>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        <Grid>
                             {searchedArticle.map((article) => (
                                 <CardItem
                                     key={article.id}
                                     article={article} />
                             ))}
-                        </div>
+                        </Grid>
                         <button
                             className="btn text-2xl my-8"
                             onClick={() => {

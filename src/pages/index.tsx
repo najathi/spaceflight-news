@@ -11,6 +11,8 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { IconLeftOpenBig, IconRightOpenBig } from "../components/Icons/Arrows";
 import Loading from "../components/Loading";
 import Container from "../components/Container";
+import Wrapper from "../components/Container/Wrapper";
+import Grid from "../components/Container/Grid";
 
 export async function getServerSideProps({ query }: any) {
     const page = query.page || 1;
@@ -85,18 +87,18 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                 </div>
 
                 {articles &&
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                    <Grid>
                         {articles.map((article) => (
                             <CardItem
                                 key={article.id}
                                 article={article} />
                         ))}
-                    </div>
+                    </Grid>
                 }
 
-                <div className="flex justify-center items-center my-6">
+                <Wrapper className="justify-center">
                     {!router.isFallback ?
-                        <div className="join flex items-center">
+                        <Wrapper className="join my-0">
                             {page > 1 &&
                                 <a
                                     className="btn btn-outline join-item mr-3 flex items-center text-sm"
@@ -110,11 +112,11 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                                 <span className="loading loading-spinner"></span>
                                 Next &nbsp;<IconRightOpenBig />
                             </a>
-                        </div>
+                        </Wrapper>
                         :
                         <Loading />
                     }
-                </div>
+                </Wrapper>
             </Container>
         </>
     )
