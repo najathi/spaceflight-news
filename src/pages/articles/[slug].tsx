@@ -3,11 +3,11 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import Meta from '../../components/Meta';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import moment from 'moment';
 
 import { Article } from '..';
 import ArticleItem from '../../components/Article';
 import Loading from '../../components/Loading';
+import Container from '../../components/Container';
 
 export async function getServerSideProps({ params }: any) {
     const { slug } = params;
@@ -34,9 +34,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ article }) => {
     return (
         <>
             <Meta />
-            <div
-                className="container py-4 md:py-8 px-4 md:px-0 mx-auto"
-            >
+            <Container>
                 {article &&
                     <Breadcrumbs
                         paths={[
@@ -49,7 +47,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ article }) => {
                 {article &&
                     <ArticleItem article={article} />
                 }
-            </div>
+            </Container>
         </>
     );
 }

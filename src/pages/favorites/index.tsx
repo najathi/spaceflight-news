@@ -9,6 +9,8 @@ import CardItem from '../../components/CardItem';
 import { removeAll } from '../../store/slice/favoritesSlice';
 import { useRouter } from 'next/router';
 import { Article } from '..';
+import Container from '../../components/Container';
+import Alert from '../../components/Alert';
 
 interface FavoritesPageProps {
 
@@ -33,7 +35,7 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
     return (
         <>
             <Meta />
-            <div className="container py-4 md:py-8 px-4 md:px-0 mx-auto">
+            <Container>
                 <div className="flex justify-between items-center my-6">
                     <Breadcrumbs
                         paths={[
@@ -71,12 +73,12 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
                         </button>
                     </>
                     :
-                    <div className="alert alert-warning">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                        <span>No records found!</span>
-                    </div>
+                    <Alert
+                        className="alert-warning"
+                        text="No records found!"
+                    />
                 }
-            </div >
+            </Container>
         </>
     );
 }

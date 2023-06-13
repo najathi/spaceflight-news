@@ -10,6 +10,7 @@ import CardItem from '../components/CardItem';
 import Breadcrumbs from "../components/Breadcrumbs";
 import { IconLeftOpenBig, IconRightOpenBig } from "../components/Icons/Arrows";
 import Loading from "../components/Loading";
+import Container from "../components/Container";
 
 export async function getServerSideProps({ query }: any) {
     const page = query.page || 1;
@@ -70,10 +71,7 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                 linkName="Get Started"
                 link="#articleList"
             />
-            <div
-                id="articleList"
-                className="container py-4 md:py-8 px-4 md:px-0 mx-auto"
-            >
+            <Container id="articleList">
                 <div className="flex justify-between items-center my-6">
                     <Breadcrumbs />
                     <input
@@ -117,7 +115,7 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                         <Loading />
                     }
                 </div>
-            </div>
+            </Container>
         </>
     )
 };
