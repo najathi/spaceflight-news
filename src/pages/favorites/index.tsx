@@ -33,7 +33,7 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
     return (
         <>
             <Meta />
-            <div className="container py-12 mx-auto">
+            <div className="container py-4 md:py-8 px-4 md:px-0 mx-auto">
                 <div className="flex justify-between items-center my-6">
                     <Breadcrumbs
                         paths={[
@@ -46,13 +46,13 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         onKeyPress={handleSearch}
-                        className="input input-bordered input-info w-full max-w-xs"
+                        className="input input-bordered input-info w-full max-w-[50%] md:max-w-xs"
                     />
                 </div>
 
                 {(searchedArticle && searchedArticle.length > 0) ?
                     <>
-                        <div className="grid grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                             {searchedArticle.map((article) => (
                                 <CardItem
                                     key={article.id}

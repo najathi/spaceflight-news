@@ -35,8 +35,7 @@ const ArticlesPage: React.FC<ArticlesPageProps> = ({ article }) => {
         <>
             <Meta />
             <div
-                id="articleList"
-                className="container py-12 mx-auto"
+                className="container py-4 md:py-8 px-4 md:px-0 mx-auto"
             >
                 {article &&
                     <Breadcrumbs

@@ -72,7 +72,7 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
             />
             <div
                 id="articleList"
-                className="container py-12 mx-auto"
+                className="container py-4 md:py-8 px-4 md:px-0 mx-auto"
             >
                 <div className="flex justify-between items-center my-6">
                     <Breadcrumbs />
@@ -82,12 +82,12 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         onKeyPress={handleSearch}
-                        className="input input-bordered input-info w-full max-w-xs"
+                        className="input input-bordered input-info w-full max-w-[50%] md:max-w-xs"
                     />
                 </div>
 
                 {articles &&
-                    <div className="grid grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                         {articles.map((article) => (
                             <CardItem
                                 key={article.id}
