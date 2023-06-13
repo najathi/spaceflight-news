@@ -33,7 +33,7 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
                 />
             </figure>
             <div className="card-body">
-                <Box className="justify-between items-start">
+                <Box className="justify-between items-baseline">
                     <h2 className="card-title w-11/12">{article.title}</h2>
                     {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder

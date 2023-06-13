@@ -26,7 +26,7 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
     return (
         <div className="bg-white overflow-hidden sm:rounded-lg">
             <div className="mb-4">
-                <Box className="justify-between items-start">
+                <Box className="justify-between items-baseline">
                     <h2 className="text-2xl font-bold mb-2 w-11/12">{article.title}</h2>
                     {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
