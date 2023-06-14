@@ -1,14 +1,17 @@
+import moment from 'moment';
+import { toast } from 'react-hot-toast';
 import { BiTimeFive } from 'react-icons/bi';
 import { GoLinkExternal } from 'react-icons/go';
-import { MdOutlineFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { MdFavorite, MdOutlineFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
+
+import styles from './Article.module.css';
 
 import { Article } from '../../pages';
 import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
 import { RootState } from '../../store/types';
-import Wrapper from '../Container/Wrapper';
 import Box from '../Container/Box';
+import ImageCmp from '../ImageCmp';
 
 interface ArticleProps {
     article: Article
@@ -31,11 +34,17 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
                     {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
                             className="ml-4 text-2xl cursor-pointer w-1/12"
-                            onClick={() => dispatch(addFavorite(article))}
+                            onClick={() => {
+                                dispatch(addFavorite(article))
+                                toast.success('An item was added to Favorites ❤️')
+                            }}
                         /> :
                         <MdFavorite
                             className="ml-4 text-2xl text-error cursor-pointer w-1/12"
-                            onClick={() => dispatch(removeFavorite(article.id))}
+                            onClick={() => {
+                                dispatch(removeFavorite(article.id))
+                                toast.error('An item was removed from Favorites ❤️')
+                            }}
                         />
                     }
                 </Box>
@@ -45,7 +54,15 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
                     <Box><BiTimeFive />&nbsp; {moment(article.published_at).format("MMMM D, YYYY")}</Box>
                 </Box>
             </div>
-            <img src={article.image_url} alt={article.title} className="w-full mb-4 rounded" />
+            <ImageCmp
+                image={article.image_url}
+                title={article.title}
+                className={`mb-4 rounded h-full`}
+                width="100%"
+                height="100%"
+                layout="responsive"
+                objectFit="cover"
+            />
             <p className="text-gray-700 mb-4">{article.summary}</p>
 
             <a href={article.url} rel="noreferrer" className="cursor-pointer text-sm flex items-center" target='_blank'>Source of news &nbsp;<GoLinkExternal /></a>

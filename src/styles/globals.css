@@ -9,3 +9,24 @@
 .cursor-pointer:hover {
     text-decoration: underline;
 }
+
+/* next image */
+.custom-img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+}
+
+.full-bleed {
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+.unset-img {
+    width: 100%;
+}
+
+.unset-img>div {
+    position: unset !important;
+}

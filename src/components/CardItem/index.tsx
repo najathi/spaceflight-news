@@ -3,6 +3,7 @@ import { BiTimeFive } from 'react-icons/bi';
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import { toast } from "react-hot-toast";
 
 import Box from "../Container/Box";
 import { RootState } from "../../store/types";
@@ -38,11 +39,17 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
                     {!checkIfElementExist() ?
                         <MdOutlineFavoriteBorder
                             className="ml-4 text-2xl cursor-pointer w-1/12"
-                            onClick={() => dispatch(addFavorite(article))}
+                            onClick={() => {
+                                dispatch(addFavorite(article))
+                                toast.success('An item was added to Favorites ❤️')
+                            }}
                         /> :
                         <MdFavorite
                             className="ml-4 text-2xl text-error cursor-pointer w-1/12"
-                            onClick={() => dispatch(removeFavorite(article.id))}
+                            onClick={() => {
+                                dispatch(removeFavorite(article.id))
+                                toast.error('An item was removed from Favorites ❤️')
+                            }}
                         />
                     }
                 </Box>
