@@ -15,6 +15,7 @@ import Grid from '../../components/Container/Grid';
 import Wrapper from '../../components/Container/Wrapper';
 import Button from '../../components/FormElements/Button';
 import InputField from '../../components/FormElements/InputField';
+import { toast } from 'react-hot-toast';
 
 interface FavoritesPageProps {
 
@@ -69,6 +70,7 @@ const FavoritesPage: React.FC<FavoritesPageProps> = ({ }) => {
                             className="text-2xl my-8"
                             onClick={() => {
                                 dispatch(removeAll());
+                                toast.error('Favorite items were deleted.')
                                 router.push('/');
                             }}
                             icon={<BsFillTrashFill />}
