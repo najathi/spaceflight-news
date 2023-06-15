@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ }) => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><LinkWrap href="/"><AiOutlineHome /> &nbsp;Home</LinkWrap></li>
-                        <li><LinkWrap href="/favorites"><a><MdOutlineFavoriteBorder /> &nbsp;Favorites</a></LinkWrap></li>
+                        <li><LinkWrap href="/favorites"><MdOutlineFavoriteBorder /> &nbsp;Favorites</LinkWrap></li>
                     </ul>
                 </div>
                 <LinkButton
