@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Article } from '../../pages';
+
+import { Article } from '../../shared/types/article';
 
 const initialState: Article[] = [];
 
