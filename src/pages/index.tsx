@@ -12,9 +12,10 @@ import Loading from "../components/Loading";
 import Container from "../components/Container";
 import Wrapper from "../components/Container/Wrapper";
 import Grid from "../components/Container/Grid";
-import Link from "../components/FormElements/Link";
 import InputField from "../components/FormElements/InputField";
 import Box from "../components/Container/Box";
+import LinkButton from "../components/FormElements/LinkButton";
+import { Article } from "../shared/types/article";
 
 export async function getServerSideProps({ query }: any) {
     const page = query.page || 1;
@@ -36,18 +37,6 @@ export async function getServerSideProps({ query }: any) {
             search: search
         },
     };
-}
-
-export type Article = {
-    id: number;
-    title: string;
-    url: string;
-    image_url: string;
-    news_site: string;
-    summary: string;
-    published_at: string;
-    updated_at: Date;
-    featured: boolean;
 }
 
 interface HomePageProps {
@@ -102,16 +91,16 @@ const HomePage: NextPage<HomePageProps> = ({ articles, page, search: initialSear
                     {!router.isFallback ?
                         <Box className="join my-0">
                             {page > 1 &&
-                                <Link
-                                    className="join-item mr-3"
+                                <LinkButton
+                                    className="btn-outline join-item mr-3 text-sm"
                                     href={`/?page=${page - 1}#articleList`}
                                     title="&nbsp; Previous"
                                     icon={<IconLeftOpenBig />}
                                     alignContent="right"
                                 />
                             }
-                            <Link
-                                className="btn-primary join-item"
+                            <LinkButton
+                                className="btn-outline btn-primary join-item text-sm"
                                 href={`/?page=${page + 1}#articleList`}
                                 title="Next &nbsp;"
                                 icon={<IconRightOpenBig />}

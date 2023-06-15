@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Article.module.css';
 
-import { Article } from '../../pages';
 import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
 import { RootState } from '../../store/types';
 import Box from '../Container/Box';
 import ImageCmp from '../ImageCmp';
+import { Article } from '../../shared/types/article';
 
 interface ArticleProps {
     article: Article

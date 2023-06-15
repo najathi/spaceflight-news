@@ -4,10 +4,10 @@ import Meta from '../../components/Meta';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-import { Article } from '..';
 import ArticleItem from '../../components/Article';
 import Loading from '../../components/Loading';
 import Container from '../../components/Container';
+import { Article } from '../../shared/types/article';
 
 export async function getServerSideProps({ params }: any) {
     const { slug } = params;

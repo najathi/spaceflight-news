@@ -2,20 +2,20 @@ import React, { useState } from 'react'
 import Meta from '../../components/Meta';
 import { useDispatch, useSelector } from 'react-redux';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { toast } from 'react-hot-toast';
 
 import { RootState } from '../../store/types';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import CardItem from '../../components/CardItem';
 import { removeAll } from '../../store/slice/favoritesSlice';
 import { useRouter } from 'next/router';
-import { Article } from '..';
 import Container from '../../components/Container';
 import Alert from '../../components/Alert';
 import Grid from '../../components/Container/Grid';
 import Wrapper from '../../components/Container/Wrapper';
 import Button from '../../components/FormElements/Button';
 import InputField from '../../components/FormElements/InputField';
-import { toast } from 'react-hot-toast';
+import { Article } from '../../shared/types/article';
 
 interface FavoritesPageProps {
 

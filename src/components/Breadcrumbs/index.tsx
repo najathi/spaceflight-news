@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { AiOutlineHome } from 'react-icons/ai';
+import LinkWrap from "../FormElements/LinkWrap";
 
 type PathType = {
     title: string;
@@ -14,10 +14,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ paths }) => {
     return (
         <div className="text-sm breadcrumbs mb-5">
             <ul>
-                <li><Link href="/"><a><AiOutlineHome /> &nbsp;Home</a></Link></li>
+                <li><LinkWrap href="/"><AiOutlineHome /> &nbsp;Home</LinkWrap></li>
                 {paths &&
                     paths.map((path: PathType, idx: number) => (
-                        <li key={idx}><Link href={path.route}><a>{path.title}</a></Link></li>
+                        <li key={idx}><LinkWrap href={path.route}>{path.title}</LinkWrap></li>
                     ))
                 }
             </ul>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
     className?: string;
@@ -10,9 +11,11 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ className, icon, title, onClick, alignContent = "left" }) => {
+    const classes = twMerge(`btn ${className ?? ""}`);
+
     return (
         <button
-            className={`btn ${className}`}
+            className={classes}
             onClick={onClick}
         >
             {alignContent === 'right' ? <>{!!icon && icon} {title}</> : <>{title} {!!icon && icon}</>}

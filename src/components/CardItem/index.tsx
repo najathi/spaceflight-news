@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { BiTimeFive } from 'react-icons/bi';
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,8 +8,9 @@ import Box from "../Container/Box";
 import { RootState } from "../../store/types";
 import { IconRead } from "../Icons/Read";
 import { addFavorite, removeFavorite } from "../../store/slice/favoritesSlice";
-import { Article } from "../../pages";
 import ImageCmp from "../ImageCmp";
+import LinkButton from "../FormElements/LinkButton";
+import { Article } from '../../shared/types/article';
 
 interface CartItemProps {
     article: Article;
@@ -59,11 +59,13 @@ const CartItem: React.FC<CartItemProps> = ({ article }) => {
                 </Box>
                 <p className="pb-5">{article.summary}</p>
                 <div className="card-actions justify-end">
-                    <Link href={`/articles/${article.id}`} className="btn btn-outline cursor-pointer">
-                        <div className="flex items-center cursor-pointer">
-                            <IconRead />&nbsp; Learn more
-                        </div>
-                    </Link>
+                    <LinkButton
+                        href={`/articles/${article.id}`}
+                        icon={<IconRead />}
+                        title="&nbsp; Learn more"
+                        alignContent='right'
+                        className='btn-outline btn-sm'
+                    />
                 </div>
             </div>
         </div >

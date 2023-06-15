@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
+import { twMerge } from 'tailwind-merge';
 
 interface InputFieldProps {
     className?: string;
@@ -9,13 +10,14 @@ interface InputFieldProps {
 }
 
 const InputField: React.FC<InputFieldProps> = ({ className, type, label, multiLine = false, ...rest }) => {
+    const classes = twMerge(`input input-bordered ${className ?? ""}`);
     const Element = multiLine ? 'textarea' : 'input';
 
     return (
         <Element
             type={type}
             placeholder={label}
-            className={`input input-bordered ${className}`}
+            className={classes}
             {...rest}
         />
     );

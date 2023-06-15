@@ -1,4 +1,4 @@
-import { Article } from "../pages";
+import { Article } from "../shared/types/article";
 
 interface State {
     counter: number;

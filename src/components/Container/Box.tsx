@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge';
 
 interface BoxProps {
     children: ReactNode;
@@ -7,8 +8,10 @@ interface BoxProps {
 }
 
 const Box: React.FC<BoxProps> = ({ className, children }) => {
+    const classes = twMerge(`flex items-center ${className ?? ""}`);
+
     return (
-        <div className={`flex items-center ${className}`}>
+        <div className={classes}>
             {children}
         </div>
     );

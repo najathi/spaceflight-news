@@ -1,10 +1,10 @@
-import Link from 'next/link'
 import Image from 'next/image';
 
 import styles from './Hero.module.css';
 
 import ShowcaseImage from "../../../public/assets/images/sites/photo-1507358522600-9f71e620c44e.jpg"
 import Box from '../Container/Box';
+import LinkButton from '../FormElements/LinkButton';
 
 interface HeroProps {
     [key: string]: any;
@@ -32,7 +32,11 @@ const Hero: React.FC<HeroProps> = ({ title, desc, linkName, link }) => {
                         <div className="max-w-md">
                             <h1 className="mb-5 text-3xl md:text-4xl lg:text-5xl font-bold">{title}</h1>
                             <p className="mb-5">{desc}</p>
-                            <button className="btn btn-primary"><Link href={link}>{linkName}</Link></button>
+                            <LinkButton
+                                className="btn-primary"
+                                title={linkName}
+                                href={link}
+                            />
                         </div>
                     </div>
                 </Box>

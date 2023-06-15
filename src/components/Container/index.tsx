@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge';
 
 interface ContainerProps {
     children: ReactNode;
@@ -8,10 +9,12 @@ interface ContainerProps {
 }
 
 const Container: React.FC<ContainerProps> = ({ children, id, className }) => {
+    const classes = twMerge(`container py-4 md:py-8 px-4 md:px-0 mx-auto ${className ?? ""}`);
+
     return (
         <div
             id={id}
-            className={`container py-4 md:py-8 px-4 md:px-0 mx-auto ${className}}`}
+            className={classes}
         >
             {children}
         </div>

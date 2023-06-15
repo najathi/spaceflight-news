@@ -26,8 +26,8 @@ const Meta: React.FC<MetaProps> = ({
             <meta name="robots" content="index,follow" />
             <meta name="copyright" content={title} />
             <meta name="language" content="en_GB" />
-            <meta name="author" content="Spaceflight News, info@fixico.co.uk" />
-            <meta name="reply-to" content="info@fixico.co.uk" />
+            <meta name="author" content="Spaceflight News, info@spaceflight.co.uk" />
+            <meta name="reply-to" content="info@spaceflight.co.uk" />
             <meta name="url" content={process.env.SITE_URL} />
             <meta name="identifier-URL" content={process.env.SITE_URL} />
             <meta name="directory" content="submission" />
@@ -54,7 +54,7 @@ const Meta: React.FC<MetaProps> = ({
             <meta property="og:image" content="/images/site/logo.png" />
             <meta property="og:site_name" content={title} />
             <meta property="og:locale" content="en_GB" />
-            <meta property="og:email" content="info@fixico.co.uk" />
+            <meta property="og:email" content="info@spaceflight.co.uk" />
             <meta property="og:phone_number" content="01654 23789" />
             <meta property="og:fax_number" content="01654 23789" />
             <meta property="og:latitude" content="100.849383434334" />
@@ -68,7 +68,7 @@ const Meta: React.FC<MetaProps> = ({
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:title" content={`${title} | Spaceflight News`} />
             <meta name="twitter:description" content={description} />
-            <meta name="twitter:site" content="@AlBadrFdn" />
+            <meta name="twitter:site" content="@spaceflight" />
             <meta name="twitter:image" content="/images/site/logo.png" />
             <meta content="summary_large_image" name="twitter:card" />
 

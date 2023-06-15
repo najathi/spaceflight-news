@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge';
 
 interface WrapperProps {
     children: ReactNode;
@@ -7,8 +8,10 @@ interface WrapperProps {
 }
 
 const Wrapper: React.FC<WrapperProps> = ({ className, children }) => {
+    const classes = twMerge(`flex items-center my-6 ${className ?? ""}`);
+
     return (
-        <div className={`flex items-center my-6 ${className}`}>
+        <div className={classes}>
             {children}
         </div>
     );
