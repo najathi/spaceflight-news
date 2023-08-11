@@ -11,10 +11,10 @@ import { addFavorite, removeFavorite } from '../../store/slice/favoritesSlice';
 import { RootState } from '../../store/types';
 import Box from '../Container/Box';
 import ImageCmp from '../ImageCmp';
-import { Article } from '../../shared/types/article';
+import { Article as ArticleType } from '../../shared/types/article';
 
 interface ArticleProps {
-    article: Article
+    article: ArticleType
     [key: string]: any;
 }
 
@@ -58,10 +58,9 @@ const Article: React.FC<ArticleProps> = ({ article }) => {
                 image={article.image_url}
                 title={article.title}
                 className={`mb-4 rounded h-full`}
-                width="100%"
-                height="100%"
+                width={500}
+                height={250}
                 layout="responsive"
-                objectFit="cover"
             />
             <p className="text-gray-700 mb-4">{article.summary}</p>
 

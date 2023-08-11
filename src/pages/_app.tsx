@@ -9,7 +9,10 @@ import '../styles/globals.css'
 import Layout from '../components/Layout';
 import { persistor, store, wrapper } from '../store';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, ...rest }: AppProps) {
+    const { store, props } = wrapper.useWrappedStore(rest);
+    const { pageProps } = props;
+
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
@@ -30,4 +33,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

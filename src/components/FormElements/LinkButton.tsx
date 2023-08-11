@@ -17,10 +17,9 @@ const LinkButton: React.FC<LinkButtonProps> = ({ className, icon, title, href, a
         <NextLink
             href={href}
             {...rest}
+            className={classes}
         >
-            <a className={classes}>
-                {alignContent === 'right' ? <>{!!icon && icon} {title}</> : <>{title} {!!icon && icon}</>}
-            </a>
+            {alignContent === 'right' ? <>{!!icon && icon} {title}</> : <>{title} {!!icon && icon}</>}
         </NextLink>
     );
 }

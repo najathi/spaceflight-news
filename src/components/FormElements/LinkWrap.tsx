@@ -13,10 +13,9 @@ const LinkWrap: React.FC<LinkWrapProps> = ({ className, href, children, ...rest 
         <NextLink
             href={href}
             {...rest}
+            className={className}
         >
-            <a className={className}>
-                {children}
-            </a>
+            {children}
         </NextLink>
     );
 }
